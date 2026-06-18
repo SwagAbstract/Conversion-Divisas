@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const divisaRoutes = require('./routes/divisaRoutes');
+const divisaRoutes = require('./src/routes/divisaRoutes');
+const divisaRoutes = require('./routes/divisaRoutes'); // Corregido el path relativo
+const { conectarBD } = require('./config/db'); // Importa la función de conexión
 
 dotenv.config();
 
@@ -14,10 +16,12 @@ app.use(express.json());
 
 // Conexión a la Base de Datos
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('🔥 Conectado exitosamente a MongoDB Atlas'))
-  .catch(err => console.error('❌ Error de conexión a la BD:', err));
+  .then(() => console.log('Conectado exitosamente a MongoDB Atlas'))
+  .catch(err => console.error('Error de conexión a la BD:', err));
 
 // Rutas de la API
+// Conexión a la Base de Datos y Rutas de la API
+conectarBD(); // Llama a la función de conexión centralizada
 app.use('/api/divisas', divisaRoutes);
 
 // Puerto

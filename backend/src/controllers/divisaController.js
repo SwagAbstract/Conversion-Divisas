@@ -51,9 +51,10 @@ exports.eliminarDivisa = async (req, res) => {
 exports.convertirDivisas = async (req, res) => {
   try {
     const { cantidad, monedaOrigen, monedasDestino } = req.body;
+    const monto = parseFloat(cantidad);
 
     // Validaciones básicas
-    if (!cantidad || isNaN(cantidad) || cantidad <= 0) {
+    if (isNaN(monto) || monto <= 0) {
       return res.status(400).json({ mensaje: 'La cantidad debe ser un número positivo de doble precisión.' });
     }
 
@@ -69,7 +70,7 @@ exports.convertirDivisas = async (req, res) => {
     const divisasDestinoBD = await Divisa.find({ codigo: { $in: monedasDestino } });
 
     // Convertir la cantidad a "Dólares Base" primero, y luego a la moneda destino
-    const cantidadEnDolares = cantidad / divisaOrigen.tasaRespectoAlDolar;
+    const cantidadEnDolares = monto / divisaOrigen.tasaRespectoAlDolar;
 
     const resultados = divisasDestinoBD.map(divisa => {
       const valorConvertido = cantidadEnDolares * divisa.tasaRespectoAlDolar;
@@ -81,7 +82,7 @@ exports.convertirDivisas = async (req, res) => {
     });
 
     res.json({
-      cantidadOriginal: cantidad,
+      cantidadOriginal: monto,
       monedaOrigen,
       conversiones: resultados
     });
