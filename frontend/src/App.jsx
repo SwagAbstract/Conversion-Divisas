@@ -13,8 +13,9 @@ function App() {
   const [nuevoNombre, setNuevoNombre] = useState('');
   const [nuevaTasa, setNuevaTasa] = useState('');
   const [editandoId, setEditandoId] = useState(null);
+  const [cargando, setCargando] = useState(false);
 
-  const API_URL = 'http://localhost:5000/api/divisas';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/divisas';
 
   // Cargar divisas al iniciar
   useEffect(() => {
@@ -22,12 +23,15 @@ function App() {
   }, []);
 
   const cargarDivisas = async () => {
+    setCargando(true);
     try {
       const res = await fetch(API_URL);
       const data = await res.json();
       setDivisas(data);
     } catch (err) {
       console.error("Error cargando divisas", err);
+    } finally {
+      setCargando(false);
     }
   };
 
@@ -166,6 +170,7 @@ function App() {
         </form>
 
         <h3>Divisas en el Sistema</h3>
+        {cargando && <p>Cargando divisas...</p>}
         <table className="table">
           <thead>
             <tr>
