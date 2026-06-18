@@ -9,8 +9,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "set MONGO_URI=mongodb+srv://andresestudio123_db_user:AjnHuH5zdN2z40wc@cluster0.u08uulb.mongodb.net/?appName=Cluster0 && set PORT=5000 && node --watch src/index.js",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "cors": "^2.8.6",
