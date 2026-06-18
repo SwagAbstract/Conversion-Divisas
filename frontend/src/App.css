@@ -1,0 +1,115 @@
+:root {
+  --bg-color: #f4f6f9;
+  --card-bg: #ffffff;
+  --text-main: #2d3748;
+  --primary: #4a5568;
+  --primary-hover: #2d3748;
+  --accent: #3182ce;
+  --danger: #e53e3e;
+  --border: #e2e8f0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 { margin: 0; color: var(--primary); }
+header p { color: #718096; margin-top: 5px; }
+
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+h2 { border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-top: 0; }
+
+.grid-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+label { font-weight: 600; font-size: 14px; margin-bottom: 5px; display: block; }
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-color);
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-primary { background: var(--accent); color: white; width: 100%; }
+.btn-primary:hover { background: #2b6cb0; }
+.btn-secondary { background: var(--primary); color: white; }
+.btn-danger { background: var(--danger); color: white; padding: 6px 12px; font-size: 12px;}
+
+.results {
+  margin-top: 25px;
+  background: #ebf8ff;
+  padding: 20px;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+}
+
+.admin-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.table th, .table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.table th { background: var(--bg-color); }
